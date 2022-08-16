@@ -1,0 +1,16 @@
+$bg : rgb(0, 0, 0);
+
+*{
+    margin : 0px;
+    padding : 0px;
+    font-family: 'Roboto', sans-serif;
+    background-color: $bg;
+    color: white
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Manrope:wght@300&family=Poppins:wght@300;400;500;600&display=swap');
+
+a{
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,35 @@
+$bg : rgb(0, 0, 0);
+
+.banner{
+    // border: 2px solid white;
+    min-height: 45vh;
+}
+
+.row{
+    margin-top: 1rem;
+    padding: 0 1rem;
+    >h2{
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    > div{
+        display: flex;
+        overflow-x: auto;
+    }
+    
+}
+.cols::-webkit-scrollbar {
+    display: none;
+}
+
+.card{
+    
+    // height: 30px;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.5s;
+    &:hover{
+        transform: translateY(-10px);
+    }
+    margin: 0 0.5rem;
+}
