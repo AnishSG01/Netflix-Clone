@@ -31,8 +31,16 @@ const Home = () => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topRatedMovies, settopRatedMovies] = useState([]);
   const [latestMovies, setLatestMovies] = useState([]);
+  const [movie, setMovie] = useState([]);
   useEffect(() => {
 
+    async function fetchData(){
+      const request = await axios.get(`${moviesUrl}/${popular}?api_key=${key}&language=en-US&page=1`);
+      setMovie(
+        request.data.results[0]
+      );
+      return request;
+    }
     const fetchPopular = async ()=>{
       const { data: {results}} = await axios.get(`${moviesUrl}/${popular}?api_key=${key}&language=en-US&page=1`);
       setPopularMovies(results);
@@ -53,6 +61,7 @@ const Home = () => {
       setLatestMovies(results);
     }
 
+    fetchData();
     fetchPopular();
     fetchupcoming();
     fetchtopRated();
@@ -62,10 +71,23 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="banner" style={{
+      {/* <div className="banner" style={{
         backgroundImage: `url(${imgUrl}/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg)`
       }}>
         
+      </div> */}
+      <div className="banner"
+      style={{
+        backgroundSize:"Cover",
+        backgroundImage: `url(${imgUrl}/${movie?.backdrop_path})`,
+        backgroundPosition: "center center"
+      }}>
+        <div className="banner_contents">
+          <h1 className="banner_title">
+            {movie?.title || movie?.name || movie?.original_name}
+          </h1>
+          <h1 className="banner_description">{movie?.overview}</h1>
+        </div>
       </div>
 
       <Row title={"Popular on Netflix"} arr={popularMovies} />
