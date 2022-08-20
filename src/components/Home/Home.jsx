@@ -33,14 +33,15 @@ const Home = () => {
   const [latestMovies, setLatestMovies] = useState([]);
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-
+    
     async function fetchData(){
       const request = await axios.get(`${moviesUrl}/${popular}?api_key=${key}&language=en-US&page=1`);
       setMovie(
-        request.data.results[0]
+        request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]
       );
       return request;
     }
+    fetchData();
     const fetchPopular = async ()=>{
       const { data: {results}} = await axios.get(`${moviesUrl}/${popular}?api_key=${key}&language=en-US&page=1`);
       setPopularMovies(results);
@@ -61,21 +62,17 @@ const Home = () => {
       setLatestMovies(results);
     }
 
-    fetchData();
+    
     fetchPopular();
     fetchupcoming();
     fetchtopRated();
     fetchLatest();
-});
+}, []);
   
 
   return (
     <div className="home">
-      {/* <div className="banner" style={{
-        backgroundImage: `url(${imgUrl}/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg)`
-      }}>
-        
-      </div> */}
+      
       <div className="banner"
       style={{
         backgroundSize:"Cover",
